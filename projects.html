@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Justin Brian Solamillo</title>
+<meta name="description" content="All projects by Justin Brian Solamillo, Full Stack Developer.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Tailwind (CDN / Play) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Manrope', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          ink: '#0a0d18',
+          panel: '#0e1223',
+          accent: {
+            DEFAULT: '#5b7cfa',
+            light: '#8aa2ff',
+            dark: '#3d5be0',
+          },
+        },
+        boxShadow: {
+          glow: '0 0 60px -15px rgba(91,124,250,0.45)',
+          card: '0 10px 30px -12px rgba(15,23,42,0.12)',
+        },
+      },
+    },
+  }
+</script>
+
+<!-- AOS (Animate On Scroll) -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body class="font-body bg-white text-slate-800 antialiased">
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-accent z-[60]" style="width:0%"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 scrolled">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+    <a href="./index.html" class="flex items-center justify-center w-9 h-9 rounded-lg border border-white/15 text-white font-display font-bold text-sm">
+      JU
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="./index.html" class="nav-link text-white/70 hover:text-white transition-colors">Home</a>
+      <a href="./index.html#about" class="nav-link text-white/70 hover:text-white transition-colors">About</a>
+      <a href="./projects.html" class="nav-link text-accent-light">Projects</a>
+      <a href="./index.html#skills" class="nav-link text-white/70 hover:text-white transition-colors">Skills</a>
+      <a href="./index.html#contact" class="nav-link text-white/70 hover:text-white transition-colors">Contact</a>
+    </div>
+
+    <a href="./static/cv/resume.pdf" download
+       class="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-white border border-white/20 rounded-lg px-4 py-2 hover:bg-white/10 transition-colors">
+      Download CV <i data-lucide="download" class="w-4 h-4"></i>
+    </a>
+
+    <button id="menu-btn" class="md:hidden text-white" aria-label="Open menu">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden mx-4 mb-3 rounded-xl bg-panel/95 border border-white/10 backdrop-blur-xl px-5 py-4 flex flex-col gap-4 text-sm font-medium">
+    <a href="./index.html" class="text-white/80 hover:text-white">Home</a>
+    <a href="./index.html#about" class="text-white/80 hover:text-white">About</a>
+    <a href="./projects.html" class="text-accent-light">Projects</a>
+    <a href="./index.html#skills" class="text-white/80 hover:text-white">Skills</a>
+    <a href="./index.html#contact" class="text-white/80 hover:text-white">Contact</a>
+    <a href="./static/cv/resume.pdf" download class="text-accent-light">Download CV</a>
+  </div>
+</header>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="relative overflow-hidden bg-ink pt-36 pb-16 md:pt-44 md:pb-20">
+  <div class="hero-glow"></div>
+  <div class="max-w-6xl mx-auto px-6 relative z-10" data-aos="fade-up" data-aos-duration="700">
+    <a href="./index.html" class="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white transition-colors mb-6">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back home
+    </a>
+    <p class="text-accent-light text-sm font-semibold tracking-wide mb-3">All Projects</p>
+    <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-white mb-4">Everything I've built</h1>
+    <p class="text-white/50 leading-relaxed max-w-xl">A running log of course projects, capstone work, and things I've built on the side — from Flask backends to small games and static frontends.</p>
+  </div>
+</section>
+
+<!-- ============ FILTERS + GRID ============ -->
+<section class="bg-slate-50 py-16 md:py-20">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Filter tabs -->
+    <div id="filter-tabs" class="flex flex-wrap gap-2 mb-10" data-aos="fade-up">
+      <button data-filter="All" class="filter-tab is-active">All</button>
+      <button data-filter="Web App" class="filter-tab">Web App</button>
+      <button data-filter="Game" class="filter-tab">Game</button>
+      <button data-filter="Mobile App" class="filter-tab">Mobile App</button>
+    </div>
+
+    <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="0">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-amber-500/30 to-rose-500/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Mrs. Brave Cake Shop</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A full-stack cake shop platform where customers order premade cakes or fully customize their own, book pickup/delivery slots, and track orders in real time. Includes live in-app chat between customer and shop (Firebase onSnapshot) and real-time delivery tracking, plus an admin dashboard for sales, bookings, and inventory analytics. Built as lead developer for our capstone project.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Flask</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">JavaScript</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Firebase</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Firestore</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Firebase Authentication</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">PWA</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/StressWare/Capstone-CakeShop" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+            <a href="https://mrs-braves-cakes.onrender.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live
+            </a>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Mobile App" data-aos="fade-up" data-aos-delay="60">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-cyan-500/30 to-blue-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Mobile App</span>
+          
+            
+              <i data-lucide="smartphone" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Sari-Sari Scanner</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A mobile app for sari-sari store owners to scan product barcodes for quick inventory lookup and pricing, storing everything locally on-device via SQLite so it works fully offline. Built with React Native and Expo, with the APK distributed through GitHub Releases and a GitHub Pages landing site to download it from.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">React Native</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Expo</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">SQLite</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/devpoohtah/sarisari-app" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+            <a href="https://devpoohtah.github.io/sarisari-app/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live
+            </a>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Mobile App" data-aos="fade-up" data-aos-delay="120">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-emerald-500/30 to-green-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Mobile App</span>
+          
+            
+              <i data-lucide="smartphone" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">BudgetPal</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A simple offline-first budget tracker app for Android. Users set a budget, log expenses by category, and see their remaining balance update instantly — no account or internet connection needed. Completed budgets are saved to a history view for later review. Built with React Native and Expo, with the APK distributed through GitHub Releases and a GitHub Pages landing site to download it from.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">React Native</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Expo</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">SQLite</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/devpoohtah/budgetpal" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+            <a href="https://devpoohtah.github.io/BudgetPal-app/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live
+            </a>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="180">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-teal-500/30 to-emerald-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Library Management System</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A Flask-based system for managing a library's day-to-day operations — cataloging books, tracking borrow and return transactions, monitoring availability, and giving staff an admin view to manage the collection. Built as a 2nd-year academic project.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Flask</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Python</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">MySQL</span>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="240">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-orange-500/30 to-red-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">MyCar Rental Services</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A car rental frontend for Western Visayas — browse the fleet, view vehicle details, book a car or tour, and check available drivers, with a dedicated admin view. Currently a static HTML/CSS/JS build; backend and booking logic are the next step.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">HTML</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">CSS</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">JavaScript</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/devpoohtah/car-rental-" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+            <a href="https://devpoohtah.github.io/car-rental-/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live
+            </a>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Mobile App" data-aos="fade-up" data-aos-delay="300">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-emerald-500/30 to-teal-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Mobile App</span>
+          
+            
+              <i data-lucide="smartphone" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Android Java Apps</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">Collection of Android apps including BMI Calculator, Converter, and more.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Java</span>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="0">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-slate-500/30 to-blue-500/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Secure CRUD System</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A Flask app built for an Information Assurance and Security course, focused on secure data handling: user accounts with role-based access and block/unblock controls, full product CRUD, hashed passwords, and encrypted data at rest to protect sensitive records.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Flask</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Python</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Security</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">MySQL</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/jualsolamilloui-hash/IAS-2" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Game" data-aos="fade-up" data-aos-delay="60">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-violet-500/30 to-fuchsia-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Game</span>
+          
+            
+              <i data-lucide="gamepad-2" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Gem Rush Game</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">An obstacle-dodging arcade runner: weave past hazards, grab gems along the way, and sprint to the finish line before your luck runs out.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Godot</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">GDScript</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/kriselda-web/krizzy-foru" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="120">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-blue-500/30 to-indigo-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Barangay Portal System</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A web-based platform where residents file complaints, view official announcements, and request documents like clearances and certificates online — cutting down on walk-in queues and manual paperwork.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Flask</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">MySQL</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Bootstrap</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/jualsolamilloui-hash/Platform-tech" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="180">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-lime-500/30 to-green-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">Expenses Logger</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A simple offline expense tracker (PWA) for daily budgeting — set a budget for an event or outing, log expenses by category and item, and watch total spent and remaining balance update in real time. Includes expense history with PDF export and a clear-all option.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">JavaScript</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">HTML</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">CSS</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">PWA</span>
+            
+          </div>
+          
+          <div class="flex items-center gap-4 pt-3 border-t border-slate-100">
+            
+            <a href="https://github.com/devpoohtah/expenses-tracker" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
+            </a>
+            
+            
+            <a href="https://devpoohtah.github.io/expenses-tracker/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-accent transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live
+            </a>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Mobile App" data-aos="fade-up" data-aos-delay="240">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-purple-500/30 to-pink-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Mobile App</span>
+          
+            
+              <i data-lucide="smartphone" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">BMI Calculator</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">Built the same BMI calculator to explore different platforms — a Python console program, a Java desktop app with a GUI, and a native Kotlin Android app in Android Studio. Each version takes height and weight and returns the calculated BMI with its health category.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Python</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Java</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Kotlin</span>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="300">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-yellow-500/30 to-amber-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">E-Commerce Website</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A basic e-commerce website built with HTML and CSS — product listings and a storefront layout. A 1st-year project focused on frontend fundamentals.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">HTML</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">CSS</span>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+      <article class="project-card" data-category="Web App" data-aos="fade-up" data-aos-delay="0">
+        <div class="relative h-36 rounded-t-xl bg-gradient-to-br from-rose-500/30 to-red-400/20 bg-ink flex items-center justify-center overflow-hidden">
+          <span class="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/40 text-white/90 px-2 py-1 rounded-md backdrop-blur-sm">Web App</span>
+          
+            
+              <i data-lucide="layout-panel-left" class="w-10 h-10 text-white/25"></i>
+            
+          
+        </div>
+        <div class="p-5 border border-t-0 border-slate-200 rounded-b-xl">
+          <h3 class="font-display font-semibold text-slate-800 mb-1.5">E-Commerce Website (Grandeur)</h3>
+          <p class="text-slate-500 text-sm leading-relaxed mb-4">A full e-commerce platform built with PHP, MySQL, and Bootstrap — product catalog, styled storefront, and a database-backed backend. A 2nd-year project focused on full-stack web development.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">PHP</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">MySQL</span>
+            
+            <span class="text-[11px] font-medium text-accent bg-accent/8 px-2 py-1 rounded-md">Bootstrap</span>
+            
+          </div>
+          
+        </div>
+      </article>
+      
+    </div>
+
+    <p id="empty-state" class="hidden text-center text-slate-400 text-sm py-16">No projects in this category yet.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink border-t border-white/10 py-8">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-8 h-8 rounded-lg border border-white/15 text-white font-display font-bold text-xs">JU</span>
+      <p class="text-white/40 text-sm">&copy; 2026 Justin Brian Solamillo. All rights reserved.</p>
+    </div>
+    <div class="hidden md:flex items-center gap-6 text-sm text-white/50">
+      <a href="./index.html" class="hover:text-white transition-colors">Home</a>
+      <a href="./index.html#about" class="hover:text-white transition-colors">About</a>
+      <a href="./projects.html" class="hover:text-white transition-colors">Projects</a>
+      <a href="./index.html#skills" class="hover:text-white transition-colors">Skills</a>
+      <a href="./index.html#contact" class="hover:text-white transition-colors">Contact</a>
+    </div>
+    <button id="to-top" aria-label="Scroll to top"
+            class="w-9 h-9 flex items-center justify-center rounded-lg border border-white/15 text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+      <i data-lucide="arrow-up" class="w-4 h-4"></i>
+    </button>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="./static/js/script.js"></script>
+<script>
+  // Category filter (this page only)
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('#projects-grid .project-card');
+    const emptyState = document.getElementById('empty-state');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+
+        const filter = tab.dataset.filter;
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const match = filter === 'All' || card.dataset.category === filter;
+          card.style.display = match ? '' : 'none';
+          if (match) visibleCount++;
+        });
+
+        emptyState.classList.toggle('hidden', visibleCount !== 0);
+      });
+    });
+  });
+</script>
+</body>
+</html>
